@@ -1,0 +1,38 @@
+body{
+  height:100vh;
+  width:100vw;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  margin:0;
+  background-color:black;
+}
+#game-box{
+  background-color:beige;
+  width:100vmin;
+  height:100vmin;
+  display:grid;
+  grid-template-columns:repeat(30,1fr);
+  grid-template-rows:repeat(30,1fr);
+
+}
+.snake{
+  background-color: green;
+  /* border:0.5vmin solid green; */
+
+}
+.snake{
+  /* border-radius:10px; */
+  background-color:green;
+  /* position:relative; */
+}
+
+.fruit{
+  background-color: red;
+  border-radius:10px;
+
+}
+.fruit:nth-child(2n+1){
+  background-color: darkorange;
+    border-radius:10px;
+}
