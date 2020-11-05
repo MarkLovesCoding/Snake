@@ -1,4 +1,4 @@
-import { SNAKE_SPEED, draw as drawSnakeBody, update as updateSnakeBody, snakeLead, checkSnakeIntersection} from './snake.js'
+import { SNAKE_SPEED, snake, draw as drawSnakeBody, update as updateSnakeBody, snakeLead, checkSnakeIntersection} from './snake.js'
 import { draw as drawFruit, update as updateFruit} from './fruit.js'
 import {checkBoundary} from './grid.js'
 
@@ -29,11 +29,22 @@ function app(time) {
 
 window.requestAnimationFrame(app)
 
+ function updateBackground(board,snake){
+  const countAttribute = document.createAttribute("count")
+  countAttribute.value = snake.length;
+  board.setAttributeNode(countAttribute);
+}
+
+
+
 function update(){
-  updateSnakeBody()
-  updateFruit()
   checkConditions()
+
+  updateSnakeBody()
+  updateBackground(board,snake)
+  updateFruit()
   // styleUpdate()
+
 }
 
 function draw(){

@@ -2,7 +2,7 @@ import { getDirection } from './userInput.js';
 
 export const SNAKE_SPEED = 10;
 
-const snake = [
+export const snake = [
   {x:15,y:15}
 ]
 
@@ -31,11 +31,16 @@ let newSnakePieces = 0;
  //Draws snake on board
  //=====================
   export function draw(board){
-      snake.forEach(gridPiece => {
+     const direction = getDirection()
+      snake.forEach((gridPiece, index, array) => {
         const el = document.createElement('div');
         el.style.gridColumnStart = gridPiece.x;
         el.style.gridRowStart = gridPiece.y;
-        el.classList.add('snake')
+        el.classList.add('snake');
+
+        //update border radius of snake head based on direction
+        styleUpdate(el, direction, index)
+
         board.appendChild(el);
       })
   }
@@ -91,8 +96,38 @@ function addPieces(){
 //=====================
 //Style snake-border head and tail
 //=====================
-// export function styleUpdate(){
-//   let firstSegment = document.getElementsByClassName("snake");
-//   // console.log(firstSegment[0]);
-//   // firstSegment.style.borderRadius = "5px"
-// }
+ function styleUpdate(el, direction, index){
+   if(index == 0){
+     if(direction.x == 0 && direction.y == 0){
+       el.style.borderBottomRightRadius = "50%";
+       el.style.borderTopRightRadius = "50%";
+       el.style.borderBottomLeftRadius = "50%";
+       el.style.borderTopLeftRadius = "50%";
+     }
+   else{
+     console.log(direction.x, direction.y)
+     switch (direction.x) {
+       case (1):
+             el.style.borderBottomRightRadius = "50%";
+             el.style.borderTopRightRadius = "50%";
+         break;
+       case (-1):
+             el.style.borderTopLeftRadius = "50%";
+             el.style.borderBottomLeftRadius = "50%";
+         break;
+
+       }
+       switch (direction.y) {
+       case (-1):
+             el.style.borderTopLeftRadius = "50%";
+             el.style.borderTopRightRadius = "50%";
+         break;
+       case (1):
+             el.style.borderBottomLeftRadius = "50%";
+             el.style.borderBottomRightRadius = "50%";
+         break;
+
+     }
+   }
+ }
+}

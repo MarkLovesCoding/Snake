@@ -1,0 +1,104 @@
+:root{
+  --board-bg:#1f2e4f;
+  --bg-font:rgba(220,230,210,0.04);
+}
+
+body{
+  height:100vh;
+  width:100vw;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  margin:0;
+  background-color:rgba(5,5,5,1);
+}
+#game-box{
+  background-color:var(--board-bg);
+  width:100vmin;
+  height:100vmin;
+  display:grid;
+  grid-template-columns:repeat(40,1fr);
+  grid-template-rows:repeat(40,1fr);
+  position:relative;
+  z-index:1;
+}
+#game-box::before{
+  content:attr(count);
+  font-size:80vmin;
+  font-family:fantasy;
+  color:var(--bg-font);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width: 100%;
+  z-index:1;
+
+
+}
+.title{
+  display: inline;
+  position: absolute;
+  top:5vmin;
+  left:calc(50% - 2ch);
+  z-index:5;
+  font-size:10vmin;
+  color:var(--bg-font);
+  z-index:2;
+  font-family:fantasy;
+}
+.snake{
+  background-color: green;
+  z-index:5;
+
+  /* border:0.5vmin solid green; */
+
+}
+.snake{
+  /* border-radius:10px; */
+  background-color:green;
+  /* position:relative; */
+  position: relative;
+}
+.snake:first-child::after{
+  z-index:5;
+  position: absolute;
+  content:"";
+  width:4px;
+  height:4px;
+  border-radius: 50%;
+  background-color:black;
+  top:calc(50% - 2px);
+  left:calc(50% - 2px);
+}
+.fruit{
+  background-color: red;
+  border-radius:50%;
+  position: relative;
+}
+.fruit::after{
+  content:'';
+  position: absolute;
+  left: calc(50% - 2px);
+  top:-5px;
+  width:3px;
+  height:50%;
+  background-color:#613525;
+}
+.fruit::before{
+  content:'';
+  position: absolute;
+  left: calc(50%);
+  top:-5px;
+  width:50%;
+  height:50%;
+  background-color:green;
+  border-top-left-radius: 11px;
+  border-bottom-right-radius: 10px;
+}
+.fruit:nth-child(2n+1){
+  background-color: darkorange;
+}
