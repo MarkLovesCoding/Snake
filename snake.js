@@ -96,9 +96,23 @@ function addPieces(){
 //=====================
 //Style snake-border head and tail
 //=====================
- function styleUpdate(el, direction, index){
+  function styleUpdate(el, direction, index){
+
+
+    var eye1 = document.createElement("div")
+    var eye2 = document.createElement("div")
+    var tongue = document.createElement("tongue")
+    eye1.setAttribute("class","eye1")
+    eye2.setAttribute("class","eye2")
+    tongue.setAttribute("class","tongue")
+    if (index == 0){
+    el.appendChild(eye1)
+    el.appendChild(eye2)
+
+    el.appendChild(tongue)}
    if(index == 0){
      if(direction.x == 0 && direction.y == 0){
+
        el.style.borderBottomRightRadius = "50%";
        el.style.borderTopRightRadius = "50%";
        el.style.borderBottomLeftRadius = "50%";
@@ -108,10 +122,17 @@ function addPieces(){
      console.log(direction.x, direction.y)
      switch (direction.x) {
        case (1):
+
+       eye1.setAttribute("class","eye1-horizontal")
+       eye2.setAttribute("class","eye2-horizontal")
+             tongue.setAttribute("class","tongue-right")
              el.style.borderBottomRightRadius = "50%";
              el.style.borderTopRightRadius = "50%";
          break;
        case (-1):
+       eye1.setAttribute("class","eye1-horizontal")
+       eye2.setAttribute("class","eye2-horizontal")
+       tongue.setAttribute("class","tongue-left")
              el.style.borderTopLeftRadius = "50%";
              el.style.borderBottomLeftRadius = "50%";
          break;
@@ -119,10 +140,16 @@ function addPieces(){
        }
        switch (direction.y) {
        case (-1):
+       eye1.setAttribute("class","eye1")
+       eye2.setAttribute("class","eye2")
+              tongue.setAttribute("class","tongue-top")
              el.style.borderTopLeftRadius = "50%";
              el.style.borderTopRightRadius = "50%";
          break;
        case (1):
+       eye1.setAttribute("class","eye1")
+       eye2.setAttribute("class","eye2")
+       tongue.setAttribute("class","tongue")
              el.style.borderBottomLeftRadius = "50%";
              el.style.borderBottomRightRadius = "50%";
          break;

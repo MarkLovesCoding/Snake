@@ -63,7 +63,7 @@ body{
   /* position:relative; */
   position: relative;
 }
-.snake:first-child::after{
+/* .snake:first-child::after{
   z-index:5;
   position: absolute;
   content:"";
@@ -72,8 +72,19 @@ body{
   border-radius: 50%;
   background-color:black;
   top:calc(50% - 2px);
-  left:calc(50% - 2px);
+  left:calc(50% - 6px);
 }
+.snake:first-child::before{
+  z-index:5;
+  position: absolute;
+  content:"";
+  width:4px;
+  height:4px;
+  border-radius: 50%;
+  background-color:black;
+  top:calc(50% - 2px);
+  left:calc(50% + 2px);
+} */
 .fruit{
   background-color: red;
   border-radius:50%;
@@ -101,4 +112,68 @@ body{
 }
 .fruit:nth-child(2n+1){
   background-color: darkorange;
+}
+.tongue{
+  position: absolute;
+  width: 3px;
+  height:5px;
+  bottom:-5px;
+  left:calc(50% - 1.5px);
+  background-color:red;
+}
+.tongue-left{
+
+  position: absolute;
+  width: 5px;
+  height:3px;
+  bottom:calc(50% - 1.5px);
+  left:-5px;
+  background-color:red;
+}
+.tongue-right{
+
+  position: absolute;
+  width: 5px;
+  height:3px;
+  bottom:calc(50% - 1.5px);
+  right:-5px;
+  background-color:red;
+}
+.tongue-top{
+
+  position: absolute;
+  width: 3px;
+  height:5px;
+  top:-5px;
+  right:calc(50% - 1.5px);
+  background-color:red;
+}
+.eye1, .eye2{
+  position:absolute;
+  width:3px;
+  height:6px;
+  top:calc(50% - 3px);
+  background-color:black;
+}
+.eye1{
+  left:calc(50% - 4.5px);
+}
+.eye2{
+  left:calc(50% + 1.5px);
+}
+.eye1-horizontal, .eye2-horizontal{
+  position:absolute;
+  width:6px;
+  height:3px;
+  left:calc(50% - 3px);
+  background-color:black;
+}
+.eye1-horizontal{
+  top:calc(50% - 4.5px);
+}
+.eye2-horizontal{
+  top:calc(50% + 1.5px);
+}
+.up{
+  top:calc(50%)
 }
