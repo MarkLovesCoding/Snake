@@ -1,6 +1,10 @@
 :root{
   --board-bg:#1f2e4f;
   --bg-font:rgba(220,230,210,0.04);
+  --tongue-length:0.75vmin;
+  --tongue-width:0.4vmin;
+  --eye-length:0.45vmin;
+  --eye-width:0.45vmin;
 }
 
 body{
@@ -11,6 +15,7 @@ body{
   align-items: center;
   margin:0;
   background-color:rgba(5,5,5,1);
+  overflow:hidden;
 }
 #game-box{
   background-color:var(--board-bg);
@@ -115,64 +120,66 @@ body{
 }
 .tongue{
   position: absolute;
-  width: 3px;
-  height:5px;
-  bottom:-5px;
+  width: var(--tongue-width);
+  height:var(--tongue-length);
+  bottom:calc(-1 * var(--tongue-length));
   left:calc(50% - 1.5px);
   background-color:red;
 }
 .tongue-left{
 
   position: absolute;
-  width: 5px;
-  height:3px;
+  width: var(--tongue-length);
+  height:var(--tongue-width);
   bottom:calc(50% - 1.5px);
-  left:-5px;
+  left:calc(-1 * var(--tongue-length));
   background-color:red;
 }
 .tongue-right{
 
   position: absolute;
-  width: 5px;
-  height:3px;
+  width:var(--tongue-length);;
+  height:var(--tongue-width);
   bottom:calc(50% - 1.5px);
-  right:-5px;
+  right:calc(-1 * var(--tongue-length));
   background-color:red;
 }
 .tongue-top{
 
   position: absolute;
-  width: 3px;
-  height:5px;
-  top:-5px;
+  width:var(--tongue-width);
+  height:var(--tongue-length);
+  top:calc(-1 * var(--tongue-length));
   right:calc(50% - 1.5px);
   background-color:red;
 }
 .eye1, .eye2{
   position:absolute;
-  width:3px;
-  height:6px;
-  top:calc(50% - 3px);
+  width:var(--eye-width);
+  height:var(--eye-length);
+  top:calc(50% - var(--eye-length));
   background-color:black;
+  border-radius:50%;
 }
 .eye1{
-  left:calc(50% - 4.5px);
+  left:calc(50% - 1.25 * var(--eye-length));
 }
 .eye2{
-  left:calc(50% + 1.5px);
+  left:calc(50% + 0.25 * var(--eye-length));
 }
 .eye1-horizontal, .eye2-horizontal{
   position:absolute;
-  width:6px;
-  height:3px;
-  left:calc(50% - 3px);
+  width:var(--eye-length);
+  height:var(--eye-width);
+  left:calc(50% - var(--eye-length));
   background-color:black;
+  border-radius: 50%;
 }
 .eye1-horizontal{
-  top:calc(50% - 4.5px);
+  top:calc(50% - 1.25 * var(--eye-length));
 }
 .eye2-horizontal{
-  top:calc(50% + 1.5px);
+  top:calc(50% + 0.25 * var(--eye-length));
 }
 .up{
   top:calc(50%)
