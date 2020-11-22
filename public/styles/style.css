@@ -1,10 +1,10 @@
 :root{
   --board-bg:#1f2e4f;
   --bg-font:rgba(220,230,210,0.04);
-  --tongue-length:0.75vmin;
-  --tongue-width:0.4vmin;
+  --tongue-length:0.25vmin;
+  --tongue-width:0.2vmin;
   --eye-length:0.45vmin;
-  --eye-width:0.45vmin;
+  --eye-width:0.3vmin;
 }
 
 body{
@@ -16,6 +16,7 @@ body{
   margin:0;
   background-color:rgba(5,5,5,1);
   overflow:hidden;
+  position: relative;
 }
 #game-box{
   background-color:var(--board-bg);
@@ -184,3 +185,76 @@ body{
 .up{
   top:calc(50%)
 }
+
+.login{
+
+  color:white;
+  position:absolute;
+  top:calc(50% - 200px);
+  left:calc(50% - 200px);
+  width:400px;
+  height:400px;
+  border-radius:20px;
+  background-color:rgba(0,0,0,0.5);
+}
+.login-active{
+  z-index:50 !important;
+
+}
+
+.form-container{
+  position:absolute;
+  top:calc(50% - 10vmax);
+  left:calc(50% - 10vmax);
+  width:20vmax;
+  height:20vmax;
+  z-index:50;
+  display: flex;
+  align-items:center;
+  flex-direction: column;
+
+}
+.login-form, .register-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+    color:white;
+}
+.email, .name, .password{
+  display: flex;
+  width:100%;
+  margin:10px;
+}
+label, input{
+  display: flex;
+  height:inherit;
+  width:50%;
+
+}
+label{
+  justify-content: flex-end;
+  align-self: flex-flex-end;
+  margin-right: 10px;
+}
+input{
+  justify-content: center;
+  width:25ch;
+}
+button{
+  margin:20px;
+  padding:5 10px;
+  cursor:pointer;
+}
+button:active{
+}
+a{
+  color:white;
+}
+
+/* .form-container > *{
+  flex-direction: column;
+} */
+/* .login-form{
+  background:red;
+} */

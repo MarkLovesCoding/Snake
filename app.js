@@ -26,13 +26,21 @@ import {checkBoundary} from './grid.js'
 // if(!play){
 //   window.cancelAnimationFrame(app)
 // }
-
+  const modalState = document.getElementById("login")
 
   function app(time) {
+    if (checkGameOver){
+      if(confirm("Game Over. Press OK to restart.")){
+        window.location='/'
+      }
+      modalState.classList = `${modalState.classList} login-active`;
+      console.log(modalState.classList);
 
 
+      return
+    }
 
-
+    window.requestAnimationFrame(app)
     const sinceLastRender = (time - latestRenderTime) / 1000;
     if (sinceLastRender < 1 / SNAKE_SPEED) return
 
@@ -41,7 +49,7 @@ import {checkBoundary} from './grid.js'
 
     update()
     draw()
-    window.requestAnimationFrame(app)
+
   }
 
   // function toggleStart(){
@@ -69,7 +77,8 @@ import {checkBoundary} from './grid.js'
   // }
 
 
-window.requestAnimationFrame(app)
+  window.requestAnimationFrame(app)
+
 
  function updateBackground(board,snake){
   const countAttribute = document.createAttribute("count")

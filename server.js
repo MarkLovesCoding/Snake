@@ -1,76 +1,64 @@
-if (process.env.NODE_ENV != 'production'){
-  require('dot-env').config
+if (process.env.NODE_ENV !== 'production'){
+  require('dotenv').config()
 }
 
 const express = require('express');
 const app = express()
+const validator = require('validator')
 const bcrypt = require('bcrypt')
-const passport = require('passport')
+ const passport = require('passport')
+const bodyParser = require('body-parser')
 const flash = require('express-flash')
 const session = require('express-session')
-const initializePassport = require('./passport-config')
-initializePassport(
-  passport,
-  email => users.find(user => user.email === email)
-)
-const users = []
+const mongo = require('mongodb').MongoClient;
+const mongoose = require('mongoose')
+const ObjectID = require('mongodb').ObjectID;
+const LocalStrategy = require('passport-local').Strategy;
+const initializeDbPassport = require('./passport-db-config.js')
+const routes = require('./public/routes/routes.js');
 
-app.use(express.urlencoded({extended:false}))
+//
+  const User = require('./public/models/userSchema')
+// console.log(registrySchema)
+//
+//
+//
+
+
+app.set('view-engine','ejs')
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.urlencoded({extended:false}))
+// app.use(express.static(process.cwd()+"/views/"))
 app.use(express.static(process.cwd()+"/public/"))
 app.use(express.static(process.cwd()+"/"))
-
-app.use(flash())
 app.use(session({
-  secret: "hi",
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized:false
 }))
-app.use(passport.initialize());
-app.use(passport.session())
-app.get("/",(req,res)=>{
-  res.sendFile(__dirname+"/index.html")
-})
-app.get("/login",(req,res)=>{
-  res.sendFile(__dirname+"/login.html")
-})
-app.post('/login',checkNotAuthenticated,passport.authenticate('local',{
-  successRedirect:'/',
-  failureRedirect:'/login',
-  failureFlash:true
-}))
-app.get("/register",(req,res)=>{
-  res.sendFile(__dirname+"/register.html")
-})
-app.post('/register',checkNotAuthenticated, async (req,res)=>{
-  try{
-    const hashedPassword = await bcrypt.hash(req.body.password,10)
-    users.push({
-      id:Date.now().toString(),
-      name:req.body.name,
-      email:req.body.email,
-      password:hashedPassword
-    })
-  } catch {
-    res.redirect('/register')
-  }
-})
+app.use(flash())
 
-app.delete('/logout',(req,res)=>{
-  if (req.isAuthenticated()){
-    return next()
-  }
-  res.redirect('/login')
-})
-function checkNotAuthenticated(req,res,next){
-  if (req.isAuthenticated()){
-    return next()
-  }
-  res.redirect('/login')
-}
+app.use(initializeDbPassport.initialize());
+app.use(initializeDbPassport.session())
 
-function checkAuthenticated(req,res,next){
-  if (req.isAuthenticated()){
-    return res.redirect('/')
-  }
-}
-app.listen(3000,()=>{console.log("Server Working")})
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+mongoose.connect(process.env.DATABASE, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology:true
+})
+mongoose.set('useCreateIndex',true)
+
+// var db = mongoose.connection
+// db.on('err',console.error.bind(console,'connection error:'))
+// db.once('open',()=>{
+//   console.log('connection successful');
+// })
+app.use('/',routes)
+
+  app.listen(3000,()=>{console.log("Server Working")})
