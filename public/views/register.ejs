@@ -1,4 +1,10 @@
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Snake with JS</title>
+  <meta name="description" content="Snake">
+  <meta name="author" content="MarkHalstead">
   <link type="text/css" rel="stylesheet" href="/styles/style.css">
 
 </head>
@@ -12,15 +18,16 @@
 
 
 <div class="form-container">
+  <div class="displayMessage"><%= displayMessage %></div>
   <form class="register-form" action="/register" method="post">
     <div class="name">
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" value="">
+      <label for="username">Name</label>
+      <input type="text" name="username" id="username" value="">
     </div>
-    <div class="email">
+    <!-- <div class="email">
       <label for="name">email</label>
       <input type="text" name="email" id="email" value="" required>
-    </div>
+    </div> -->
     <div class="password">
       <label for="name">Password</label>
       <input type="text" name="password" id="password" value="" required>
@@ -31,3 +38,4 @@
 </div>
 
 </body>
+</html>
