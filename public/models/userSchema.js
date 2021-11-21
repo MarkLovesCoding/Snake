@@ -5,10 +5,11 @@ const passportLocalMongoose = require('passport-local-mongoose')
  const { Schema } = mongoose;
 
   const userSchema = Schema({
-   name:  {
+   username:  {
       type:String,
       required:[true,"name is required"],
-      unique:true
+      unique:true,
+      minLength:5
     }, // String is shorthand for {type: String}
    // email: {
    //    type:String

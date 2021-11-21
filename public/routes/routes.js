@@ -91,13 +91,15 @@ let currentUserHighScore = 1;
   router.post('/register', function (req,res,next){
 
     User.register(new User({username: req.body.username}), req.body.password, function(err) {
+      console.log(req.body.username, req.body.password);
     if (err) {
       let errMessage = err.message
         res.render(process.cwd()+'/public/views/register.ejs',{displayMessage:errMessage})
       return next(err);
     }
     console.log('user registered!');
-    res.redirect('/');
+    res.render(process.cwd()+'/public/views/login.ejs',{displayMessage:"User Registered. Please Login"})
+    // res.redirect('/');
   });
 
   })
