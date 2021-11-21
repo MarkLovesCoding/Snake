@@ -4,13 +4,29 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "dot-env": "0.0.1",
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "express-flash": "0.0.2",
+    "express-session": "^1.17.1",
+    "mongo": "^0.1.0",
+    "mongod": "^2.0.0",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.10.15",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^6.0.1",
+    "validator": "^13.1.17"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
     "nodemon": "^2.0.6"
   }
 }

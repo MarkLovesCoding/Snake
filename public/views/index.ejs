@@ -1,0 +1,48 @@
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Snake with JS</title>
+  <meta name="description" content="Snake">
+  <meta name="author" content="MarkHalstead">
+
+  <link type="text/css" rel="stylesheet" href="/styles/style.css">
+
+</head>
+
+<body>
+  <div class="title">
+    SNEK
+
+  </div>
+<div class="userAndScore">
+  <div class="username"> Hi  <div id="currentUser"><%= username %></div> </div>
+  <div class="score">Your highscore is <div id="highScore"><%= highScore %></div> </div>
+
+
+
+
+
+</div>
+
+<div id="game-box">
+
+</div>
+
+<ol class="leaderboard">
+  <h1>Leaderboard</h1>
+  <li class="leader1">1.<div class="leaderDisplay">     <%= leader1 %>  </div><div class="scoreDisplay">  <%= score1 %>  </div></li>
+  <li class="leader">2.<div class="leaderDisplay">    <%= leader2 %>  </div><div class="scoreDisplay">  <%= score2 %> </div></li>
+  <li class="leader">3.<div class="leaderDisplay">   <%= leader3 %>  </div><div class="scoreDisplay">  <%= score3 %> </div></li>
+  <li class="leader">4.<div class="leaderDisplay">     <%= leader4 %>  </div><div class="scoreDisplay">  <%= score4 %> </div></li>
+  <li class="leader">5.<div class="leaderDisplay">     <%= leader5 %>  </div><div class="scoreDisplay">  <%= score5 %> </div></li>
+</ol>
+
+<a class="logout" href="/logout">Logout</a>
+
+<script type="module" src="../../app.js" charset="utf-8" type="text/javascript"></script>
+
+
+</body>
+</html>

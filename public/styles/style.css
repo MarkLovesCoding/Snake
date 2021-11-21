@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root{
+  --board-bg:#1f2e4f;
+  --bg-font:rgba(220,230,210,0.04);
+  --tongue-length:0.7vmin;
+  --tongue-width:0.5vmin;
+  --eye-length:0.75vmin;
+  --eye-width:0.4vmin;
+}
+
+body{
+  height:100vh;
+  width:100vw;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  margin:0;
+  background-color:rgba(5,5,5,1);
+  overflow:hidden;
+  position: relative;
+  font-family:'Press Start 2P', monospace;
+}
+#game-box{
+  background-color:var(--board-bg);
+  width:75vmin;
+  min-width:500px;
+  height:75vmin;
+  min-height:500px;
+  display:grid;
+  grid-template-columns:repeat(30,1fr);
+  grid-template-rows:repeat(30,1fr);
+  position:relative;
+  z-index:1;
+
+}
+#game-box::before{
+  content:attr(count);
+  font-size:25vmin;
+  font-weight:100;
+  font-family:"Press Start 2P";
+  color:var(--bg-font);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width: 100%;
+  z-index:1;
+
+
+}
+.title{
+  display: inline;
+  position: absolute;
+  top:20vmin;
+  left:calc(50% - 2ch);
+  z-index:5;
+  font-size:8vmin;
+  color:var(--bg-font);
+  z-index:2;
+  font-family:'Press Start 2P';
+}
+.snake{
+  background-color: green;
+  z-index:5;
+
+  /* border:0.5vmin solid green; */
+
+}
+.snake{
+  /* border-radius:10px; */
+  background-color:green;
+  /* position:relative; */
+  position: relative;
+}
+/* .snake:first-child::after{
+  z-index:5;
+  position: absolute;
+  content:"";
+  width:4px;
+  height:4px;
+  border-radius: 50%;
+  background-color:black;
+  top:calc(50% - 2px);
+  left:calc(50% - 6px);
+}
+.snake:first-child::before{
+  z-index:5;
+  position: absolute;
+  content:"";
+  width:4px;
+  height:4px;
+  border-radius: 50%;
+  background-color:black;
+  top:calc(50% - 2px);
+  left:calc(50% + 2px);
+} */
+.fruit{
+  background-color: red;
+  border-radius:50%;
+  position: relative;
+}
+.fruit::after{
+  content:'';
+  position: absolute;
+  left: calc(50% - 2px);
+  top:-5px;
+  width:3px;
+  height:50%;
+  background-color:#613525;
+}
+.fruit::before{
+  content:'';
+  position: absolute;
+  left: calc(50%);
+  top:-5px;
+  width:50%;
+  height:50%;
+  background-color:green;
+  border-top-left-radius: 11px;
+  border-bottom-right-radius: 10px;
+}
+.fruit:nth-child(2n+1){
+  background-color: darkorange;
+}
+.tongue{
+  position: absolute;
+  width: var(--tongue-width);
+  height:var(--tongue-length);
+  bottom:calc(-1 * var(--tongue-length));
+  left:calc(50% - (0.5 * var(--tongue-width)));
+  background-color:red;
+  z-index:5;
+}
+.tongue-left{
+
+  position: absolute;
+  width: var(--tongue-length);
+  height:var(--tongue-width);
+  bottom:calc(50% - var(--tongue-width));
+  left:calc(-1 * var(--tongue-length));
+  background-color:red;
+  z-index:5;
+}
+.tongue-right{
+
+  position: absolute;
+  width:var(--tongue-length);;
+  height:var(--tongue-width);
+  bottom:calc(50% - var(--tongue-width));
+  right:calc(-1 * var(--tongue-length));
+  background-color:red;
+  z-index:5;
+}
+.tongue-top{
+
+  position: absolute;
+  width:var(--tongue-width);
+  height:var(--tongue-length);
+  top:calc(-1 * var(--tongue-length));
+  right:calc(50% - var(--tongue-width));
+  background-color:red;
+  z-index:5;
+}
+.eye1, .eye2{
+  position:absolute;
+  width:var(--eye-width);
+  height:var(--eye-length);
+  top:calc(60% - var(--eye-length));
+  background-color:black;
+  border-radius:2px;
+}
+.eye1{
+  left:calc(50% - 1.3 * var(--eye-length));
+}
+.eye2{
+  right:calc(50% - 1.3 * var(--eye-length));
+}
+.eye1-horizontal, .eye2-horizontal{
+  position:absolute;
+  width:var(--eye-length);
+  height:var(--eye-width);
+  left:calc(60% - var(--eye-length));
+  background-color:black;
+  border-radius: 50%;
+}
+.eye1-horizontal{
+  top:calc(50% - 1.3 * var(--eye-length));
+}
+.eye2-horizontal{
+  bottom:calc(50% - 1.3 * var(--eye-length));
+}
+.up{
+  top:calc(50%)
+}
+
+.login{
+
+  color:white;
+  position:absolute;
+  top:calc(50% - 200px);
+  left:calc(50% - 200px);
+  width:400px;
+  height:400px;
+  border-radius:20px;
+  background-color:rgba(0,0,0,0.5);
+}
+.login-active{
+  z-index:50 !important;
+
+}
+
+.form-container{
+  position:absolute;
+  top:calc(50% - 10vmax);
+  left:calc(50% - 10vmax);
+  width:20vmax;
+  height:20vmax;
+  z-index:50;
+  display: flex;
+  align-items:center;
+  flex-direction: column;
+
+}
+.login-form, .register-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+    color:white;
+}
+.email, .name, .password{
+  display: flex;
+  width:100%;
+  margin:10px;
+}
+label, input{
+  display: flex;
+  height:inherit;
+  width:50%;
+
+}
+label{
+  justify-content: flex-end;
+  align-self: flex-flex-end;
+  margin-right: 10px;
+}
+input{
+  justify-content: center;
+  width:25ch;
+}
+button{
+  margin:20px;
+  padding:5 10px;
+  cursor:pointer;
+}
+button:active{
+}
+a{
+  color:white;
+}
+
+
+.username, .score, .leader1, .leader, .leaderboard, .logout{
+  color:white;
+  font-size:1em;
+  z-index:5;
+}
+.username{
+  width:20vmax;
+  display:flex;
+  padding:10px;
+}
+#currentUser{
+  margin:0px 10px;
+  /* text-decoration: underline; */
+  color:green;
+  font-size:2em;
+  line-height: 0.25em;
+}
+.score{
+  min-width:20vmax;
+  overflow:visible;
+  display:flex;
+
+}
+#highScore{
+  font-size:1.5em;
+  color:gold;
+  padding:5px;
+  line-height:0.25em;
+}
+.leader,.leader1{
+  width:15vmax;
+  overflow-x: visible;
+  display:flex;
+  justify-content: space-evenly;
+  /* align-items: flex-start; */
+}
+.userAndScore{
+  position:absolute;
+  top:20px;
+  left:20px;
+  z-index:10;
+}
+.leaderboard{
+  font-size:0.6rem;
+  text-align: center;
+  display:inline;
+  position:absolute;
+  top:20px;
+  right:20px;
+}
+
+
+.leaderDisplay, .scoreDisplay{
+  display:inline;
+  /* padding:5px; */
+  padding-bottom:5px;
+}
+.scoreDisplay{
+  text-align:right;
+}
+.leaderDisplay{
+  text-align: left;
+  padding-left:20px;
+  width:70%;
+}
+.displayMessage{
+  color:white;
+  padding-bottom:20px;
+}
+.logout{
+  position:absolute;
+  bottom:10vmin;
+  right:10vmin;
+}
