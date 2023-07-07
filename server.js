@@ -3,7 +3,7 @@ const app = express()
 const cors = require('cors');
 app.use(cors())
 
-app.use(express.static(process.cwd+"/"))
+app.use(express.static(__dirname+"/"))
 app.get("/",(req,res)=>{
   res.sendFile(__dirname+"/index.html")
 })
